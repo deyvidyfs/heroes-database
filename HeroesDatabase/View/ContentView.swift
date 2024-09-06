@@ -16,6 +16,14 @@ struct ContentView: View {
             Text("Hello, world!")
         }
         .padding()
+        .task {
+            do {
+                let characters = try await CharactersService().fetchAllCharacters(page: 0)
+                print("Characters: \(characters)")
+            } catch {
+                print("ERROR: ", error)
+            }
+        }
     }
 }
 

@@ -9,6 +9,11 @@ import SwiftUI
 
 @main
 struct HeroesDatabaseApp: App {
+    
+    init() {
+        AppSecrets.getKeys()
+    }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
