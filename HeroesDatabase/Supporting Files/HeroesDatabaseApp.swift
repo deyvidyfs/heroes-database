@@ -10,13 +10,18 @@ import SwiftUI
 @main
 struct HeroesDatabaseApp: App {
     
+    let service: CharactersServiceProtocol
+    let useCase: FetchCharactersUseCaseProtocol
+    
     init() {
         AppSecrets.getKeys()
+        service = CharactersService()
+        useCase = FetchCharactersUseCase(charactersService: service)
     }
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CharacterDatabaseView(viewModel: CharacterDatabaseViewModel(fetchCharactersUseCase: useCase))
         }
     }
 }

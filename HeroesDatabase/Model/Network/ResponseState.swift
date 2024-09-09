@@ -14,4 +14,17 @@ enum ResponseState {
     case error
     case errorNoResults
     case errorNoNetwork
+    
+    func getErrorMessage() -> String? {
+        switch self {
+        case .error:
+            return "Sorry, something went wrong."
+        case .errorNoResults:
+            return "No entries found."
+        case .errorNoNetwork:
+            return "Unable to reach the database."
+        default:
+            return nil
+        }
+    }
 }
