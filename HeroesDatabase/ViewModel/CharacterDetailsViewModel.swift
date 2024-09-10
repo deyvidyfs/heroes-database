@@ -1,34 +1,39 @@
 //
-//  CharacterListItemViewModel.swift
+//  CharacterDetailsViewModel.swift
 //  HeroesDatabase
 //
-//  Created by Deyvidy Luã F.S on 09/09/24.
+//  Created by Deyvidy Luã F.S on 10/09/24.
 //
 
 import Foundation
-import Combine
 
-protocol CharacterListItemViewModelProtocol: ObservableObject {
-    var character: Character { get }
+protocol CharacterDetailsViewModelProtocol: ObservableObject {
     var isFavorited: Bool { get }
-    var performAfterAction: (() -> Void)? { get }
+
+    var character: Character { get }
+    var characterDescription: String { get }
     
     func handleMarkAsFavorite() async
 }
 
-class CharacterListItemViewModel: CharacterListItemViewModelProtocol {
+class CharacterDetailsViewModel: CharacterDetailsViewModelProtocol {
     private let charactersRepository: CharactersRepositoryProtocol
     
-    @Published var character: Character
-    @Published var performAfterAction: (() -> Void)?
+    var characterDescription: String {
+        character.description.isEmpty ? "[REDACTED]" : character.description
+    }
+    
     @Published var isFavorited: Bool = false
+    @Published var character: Character
     
     init(charactersRepository: CharactersRepositoryProtocol = HeroesDatabase.shared.repository,
-         character: Character,
-         performAfterAction: (() -> Void)? = nil) {
+         character: Character) {
         self.charactersRepository = charactersRepository
         self.character = character
-        self.performAfterAction = performAfterAction
+        
+        Task {
+            await checkIfCharacterIsSaved()
+        }
     }
     
     func handleMarkAsFavorite() async {
@@ -39,7 +44,6 @@ class CharacterListItemViewModel: CharacterListItemViewModelProtocol {
         }
         
         await checkIfCharacterIsSaved()
-        performAfterAction?()
     }
     
     func checkIfCharacterIsSaved() async {

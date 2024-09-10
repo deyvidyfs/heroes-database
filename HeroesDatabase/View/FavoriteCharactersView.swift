@@ -28,8 +28,10 @@ struct FavoriteCharactersView<ViewModel>: View where ViewModel: FavoriteCharacte
             }
             .background(Color.marvelGray)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .task {
-                await viewModel.getFavoriteCharacters()
+            .onAppear {
+                Task {
+                    await viewModel.getFavoriteCharacters()
+                }
             }
         }
     }

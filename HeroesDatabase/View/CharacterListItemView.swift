@@ -16,71 +16,43 @@ struct CharacterListItemView: View {
     }
     
     var body: some View {
-            HStack {
-                NavigationLink(destination: CharacterDetailsView(character: viewModel.character)) {
-                    HStack {
-                        makeThumbnail()
-                            .padding(.trailing, 12)
-                        
-                        Text(viewModel.character.name)
-                            .font(.title3)
-                            .foregroundStyle(.white)
-                        
-                        Spacer()
-                    }
-                    .contentShape(Rectangle())
+        HStack {
+            NavigationLink(destination: CharacterDetailsView(viewModel: CharacterDetailsViewModel(character: viewModel.character))) {
+                HStack {
+                    ImageLoaderView(imageUrl: viewModel.character.imageUrl)
+                        .clipShape(Circle())
+                        .frame(width: 75, height: 75)
+                        .padding(.trailing, 12)
+                    
+                    Text(viewModel.character.name)
+                        .font(.title3)
+                        .foregroundStyle(.white)
+                    
+                    Spacer()
                 }
-                
-                Button {
-                    Task {
-                        await viewModel.handleMarkAsFavorite()
-                    }
-                } label: {
-                    Image(systemName: viewModel.isFavorited ? "star.fill" : "star")
-                        .resizable()
-                        .frame(width: 24, height: 24)
-                        .foregroundStyle(viewModel.isFavorited ? .red : .white)
-                }
-                .padding(.horizontal)
-                .buttonStyle(PlainButtonStyle())
                 .contentShape(Rectangle())
             }
-            .background(Color.marvelGray)
-        }
-    
-    
-    @ViewBuilder
-    func makeThumbnail() -> some View {
-        
-        let notAvailableURL = "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available/standard_medium.jpg"
-        
-        let imageUrl = viewModel.character.imageUrl
-        
-        AsyncImage(url: URL(string: imageUrl)) { imageResponse in
-            // TODO: Improve this conditional
-            if let image = imageResponse.image, imageUrl != notAvailableURL {
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .font(.system(size: 20))
-                    .clipped()
-                    .clipShape(Circle())
-            } else if imageResponse.error != nil ||
-                        imageUrl.isEmpty ||
-                        imageUrl == notAvailableURL {
-                ZStack {
-                    Circle()
-                        .foregroundStyle(Color.marvelRed)
-                    Image(.marvelLogo)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .padding(10)
+            
+            Button {
+                Task {
+                    await viewModel.handleMarkAsFavorite()
                 }
-            } else {
-                LoadingView()
+            } label: {
+                Image(systemName: viewModel.isFavorited ? "star.fill" : "star")
+                    .resizable()
+                    .frame(width: 24, height: 24)
+                    .foregroundStyle(viewModel.isFavorited ? .red : .white)
+            }
+            .padding(.horizontal)
+            .buttonStyle(PlainButtonStyle())
+            .contentShape(Rectangle())
+        }
+        .background(Color.marvelGray)
+        .onAppear {
+            Task {
+                await viewModel.checkIfCharacterIsSaved()
             }
         }
-        .frame(width: 75, height: 75)
     }
 }
 

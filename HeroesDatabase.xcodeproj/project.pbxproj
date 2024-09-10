@@ -26,6 +26,8 @@
 		D38E1D0A2C9025BE003DE8C1 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = D38E1D082C9025BE003DE8C1 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		D38E1D0E2C90275F003DE8C1 /* CharacterEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38E1D0D2C90275F003DE8C1 /* CharacterEntity.swift */; };
 		D38E1D122C90378D003DE8C1 /* HeroesDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38E1D112C90378D003DE8C1 /* HeroesDatabase.swift */; };
+		D38E1D152C9077DC003DE8C1 /* ImageLoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38E1D142C9077DC003DE8C1 /* ImageLoaderView.swift */; };
+		D38E1D172C908EAD003DE8C1 /* CharacterDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38E1D162C908EAD003DE8C1 /* CharacterDetailsViewModel.swift */; };
 		D3BCBA5D2C8AED23002A9B1C /* HeroesDatabaseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BCBA5C2C8AED23002A9B1C /* HeroesDatabaseApp.swift */; };
 		D3BCBA612C8AED25002A9B1C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3BCBA602C8AED25002A9B1C /* Assets.xcassets */; };
 		D3BCBA642C8AED25002A9B1C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3BCBA632C8AED25002A9B1C /* Preview Assets.xcassets */; };
@@ -92,6 +94,8 @@
 		D3779A5F2C8F3699001A721A /* CharacterListItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListItemViewModel.swift; sourceTree = "<group>"; };
 		D38E1D0D2C90275F003DE8C1 /* CharacterEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterEntity.swift; sourceTree = "<group>"; };
 		D38E1D112C90378D003DE8C1 /* HeroesDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesDatabase.swift; sourceTree = "<group>"; };
+		D38E1D142C9077DC003DE8C1 /* ImageLoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaderView.swift; sourceTree = "<group>"; };
+		D38E1D162C908EAD003DE8C1 /* CharacterDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsViewModel.swift; sourceTree = "<group>"; };
 		D3BCBA592C8AED23002A9B1C /* HeroesDatabase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HeroesDatabase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3BCBA5C2C8AED23002A9B1C /* HeroesDatabaseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesDatabaseApp.swift; sourceTree = "<group>"; };
 		D3BCBA602C8AED25002A9B1C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -196,6 +200,16 @@
 				D3779A482C8B757B001A721A /* CharactersRepository.swift */,
 			);
 			path = Repository;
+			sourceTree = "<group>";
+		};
+		D38E1D132C9077C1003DE8C1 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				D3779A432C8B3D3A001A721A /* LoadingView.swift */,
+				D3779A452C8B3D6B001A721A /* ErrorView.swift */,
+				D38E1D142C9077DC003DE8C1 /* ImageLoaderView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		D3BCBA502C8AED23002A9B1C = {
@@ -305,6 +319,7 @@
 				D3779A412C8B39D6001A721A /* CharacterDatabaseViewModel.swift */,
 				D3779A5D2C8F2F73001A721A /* FavoriteCharactersViewModel.swift */,
 				D3779A5F2C8F3699001A721A /* CharacterListItemViewModel.swift */,
+				D38E1D162C908EAD003DE8C1 /* CharacterDetailsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -316,8 +331,7 @@
 				D3779A592C8F0934001A721A /* FavoriteCharactersView.swift */,
 				D3779A5B2C8F0966001A721A /* CharacterDetailsView.swift */,
 				D3779A512C8DDA8B001A721A /* CharacterListItemView.swift */,
-				D3779A432C8B3D3A001A721A /* LoadingView.swift */,
-				D3779A452C8B3D6B001A721A /* ErrorView.swift */,
+				D38E1D132C9077C1003DE8C1 /* Components */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -486,6 +500,8 @@
 				D38E1D0E2C90275F003DE8C1 /* CharacterEntity.swift in Sources */,
 				D3779A4D2C8B7886001A721A /* Character.swift in Sources */,
 				D3779A522C8DDA8B001A721A /* CharacterListItemView.swift in Sources */,
+				D38E1D152C9077DC003DE8C1 /* ImageLoaderView.swift in Sources */,
+				D38E1D172C908EAD003DE8C1 /* CharacterDetailsViewModel.swift in Sources */,
 				D3779A442C8B3D3B001A721A /* LoadingView.swift in Sources */,
 				D3779A502C8C4FF5001A721A /* Color.swift in Sources */,
 				D3BCBA5D2C8AED23002A9B1C /* HeroesDatabaseApp.swift in Sources */,
