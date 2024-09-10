@@ -10,22 +10,25 @@ import SwiftUI
 struct ErrorView: View {
     
     let errorMessage: String?
-    let retryAction: () -> Void
+    let retryAction: (() -> Void)?
     
     var body: some View {
         VStack {
             Text(errorMessage ?? "Error")
                 .foregroundStyle(.white)
                 .padding()
-            Button {
-                retryAction()
-            } label: {
-                Text("Try Again")
+            
+            if let retryAction = retryAction {
+                Button {
+                    retryAction()
+                } label: {
+                    Text("Try Again")
+                }
+                .padding()
+                .background(Color.marvelRed)
+                .foregroundStyle(.white)
+                .clipShape(Capsule(style: .continuous))
             }
-            .padding()
-            .background(Color.marvelRed)
-            .foregroundStyle(.white)
-            .clipShape(Capsule(style: .continuous))
         }
         .padding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)

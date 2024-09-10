@@ -13,13 +13,19 @@
 		D3779A422C8B39D6001A721A /* CharacterDatabaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3779A412C8B39D6001A721A /* CharacterDatabaseViewModel.swift */; };
 		D3779A442C8B3D3B001A721A /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3779A432C8B3D3A001A721A /* LoadingView.swift */; };
 		D3779A462C8B3D6B001A721A /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3779A452C8B3D6B001A721A /* ErrorView.swift */; };
-		D3779A492C8B757B001A721A /* FetchCharactersUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3779A482C8B757B001A721A /* FetchCharactersUseCase.swift */; };
+		D3779A492C8B757B001A721A /* CharactersRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3779A482C8B757B001A721A /* CharactersRepository.swift */; };
 		D3779A4D2C8B7886001A721A /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3779A4C2C8B7886001A721A /* Character.swift */; };
 		D3779A502C8C4FF5001A721A /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3779A4F2C8C4FF5001A721A /* Color.swift */; };
 		D3779A522C8DDA8B001A721A /* CharacterListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3779A512C8DDA8B001A721A /* CharacterListItemView.swift */; };
 		D3779A582C8F06B1001A721A /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = D3779A572C8F06B1001A721A /* Reachability */; };
 		D3779A5A2C8F0934001A721A /* FavoriteCharactersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3779A592C8F0934001A721A /* FavoriteCharactersView.swift */; };
 		D3779A5C2C8F0967001A721A /* CharacterDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3779A5B2C8F0966001A721A /* CharacterDetailsView.swift */; };
+		D3779A5E2C8F2F73001A721A /* FavoriteCharactersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3779A5D2C8F2F73001A721A /* FavoriteCharactersViewModel.swift */; };
+		D3779A602C8F3699001A721A /* CharacterListItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3779A5F2C8F3699001A721A /* CharacterListItemViewModel.swift */; };
+		D38E1D092C9025BE003DE8C1 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D38E1D082C9025BE003DE8C1 /* RealmSwift */; };
+		D38E1D0A2C9025BE003DE8C1 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = D38E1D082C9025BE003DE8C1 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		D38E1D0E2C90275F003DE8C1 /* CharacterEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38E1D0D2C90275F003DE8C1 /* CharacterEntity.swift */; };
+		D38E1D122C90378D003DE8C1 /* HeroesDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38E1D112C90378D003DE8C1 /* HeroesDatabase.swift */; };
 		D3BCBA5D2C8AED23002A9B1C /* HeroesDatabaseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BCBA5C2C8AED23002A9B1C /* HeroesDatabaseApp.swift */; };
 		D3BCBA612C8AED25002A9B1C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3BCBA602C8AED25002A9B1C /* Assets.xcassets */; };
 		D3BCBA642C8AED25002A9B1C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3BCBA632C8AED25002A9B1C /* Preview Assets.xcassets */; };
@@ -54,6 +60,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		D38E1D0B2C9025BE003DE8C1 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D38E1D0A2C9025BE003DE8C1 /* RealmSwift in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		D3779A3A2C8B2562001A721A /* AppSecrets.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AppSecrets.plist; sourceTree = "<group>"; };
 		D3779A3D2C8B2788001A721A /* AppSecrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSecrets.swift; sourceTree = "<group>"; };
@@ -61,13 +81,17 @@
 		D3779A412C8B39D6001A721A /* CharacterDatabaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDatabaseViewModel.swift; sourceTree = "<group>"; };
 		D3779A432C8B3D3A001A721A /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		D3779A452C8B3D6B001A721A /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
-		D3779A482C8B757B001A721A /* FetchCharactersUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCharactersUseCase.swift; sourceTree = "<group>"; };
+		D3779A482C8B757B001A721A /* CharactersRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersRepository.swift; sourceTree = "<group>"; };
 		D3779A4C2C8B7886001A721A /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		D3779A4F2C8C4FF5001A721A /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		D3779A512C8DDA8B001A721A /* CharacterListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListItemView.swift; sourceTree = "<group>"; };
 		D3779A532C8DE69C001A721A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3779A592C8F0934001A721A /* FavoriteCharactersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCharactersView.swift; sourceTree = "<group>"; };
 		D3779A5B2C8F0966001A721A /* CharacterDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsView.swift; sourceTree = "<group>"; };
+		D3779A5D2C8F2F73001A721A /* FavoriteCharactersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCharactersViewModel.swift; sourceTree = "<group>"; };
+		D3779A5F2C8F3699001A721A /* CharacterListItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListItemViewModel.swift; sourceTree = "<group>"; };
+		D38E1D0D2C90275F003DE8C1 /* CharacterEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterEntity.swift; sourceTree = "<group>"; };
+		D38E1D112C90378D003DE8C1 /* HeroesDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesDatabase.swift; sourceTree = "<group>"; };
 		D3BCBA592C8AED23002A9B1C /* HeroesDatabase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HeroesDatabase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3BCBA5C2C8AED23002A9B1C /* HeroesDatabaseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesDatabaseApp.swift; sourceTree = "<group>"; };
 		D3BCBA602C8AED25002A9B1C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -93,6 +117,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D38E1D092C9025BE003DE8C1 /* RealmSwift in Frameworks */,
 				D3779A582C8F06B1001A721A /* Reachability in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -119,21 +144,16 @@
 			children = (
 				D3779A3A2C8B2562001A721A /* AppSecrets.plist */,
 				D3779A3D2C8B2788001A721A /* AppSecrets.swift */,
+				D38E1D112C90378D003DE8C1 /* HeroesDatabase.swift */,
 			);
 			path = Infrastructure;
-			sourceTree = "<group>";
-		};
-		D3779A472C8B7569001A721A /* UseCase */ = {
-			isa = PBXGroup;
-			children = (
-				D3779A482C8B757B001A721A /* FetchCharactersUseCase.swift */,
-			);
-			path = UseCase;
 			sourceTree = "<group>";
 		};
 		D3779A4A2C8B763E001A721A /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				D38E1D102C902776003DE8C1 /* Repository */,
+				D38E1D0F2C902768003DE8C1 /* Entity */,
 				D3779A4B2C8B7869001A721A /* Model */,
 			);
 			path = Data;
@@ -155,6 +175,29 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		D38E1D072C9025BE003DE8C1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D38E1D0F2C902768003DE8C1 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				D38E1D0D2C90275F003DE8C1 /* CharacterEntity.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		D38E1D102C902776003DE8C1 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				D3779A482C8B757B001A721A /* CharactersRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
 		D3BCBA502C8AED23002A9B1C = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +205,7 @@
 				D3BCBA6C2C8AED26002A9B1C /* HeroesDatabaseTests */,
 				D3BCBA762C8AED26002A9B1C /* HeroesDatabaseUITests */,
 				D3BCBA5A2C8AED23002A9B1C /* Products */,
+				D38E1D072C9025BE003DE8C1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -251,7 +295,6 @@
 				D3BCBA882C8AF119002A9B1C /* Network */,
 				D3BCBA8A2C8AF151002A9B1C /* Service */,
 				D3779A4A2C8B763E001A721A /* Data */,
-				D3779A472C8B7569001A721A /* UseCase */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -260,6 +303,8 @@
 			isa = PBXGroup;
 			children = (
 				D3779A412C8B39D6001A721A /* CharacterDatabaseViewModel.swift */,
+				D3779A5D2C8F2F73001A721A /* FavoriteCharactersViewModel.swift */,
+				D3779A5F2C8F3699001A721A /* CharacterListItemViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -297,6 +342,7 @@
 				D3BCBA552C8AED23002A9B1C /* Sources */,
 				D3BCBA562C8AED23002A9B1C /* Frameworks */,
 				D3BCBA572C8AED23002A9B1C /* Resources */,
+				D38E1D0B2C9025BE003DE8C1 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -305,6 +351,7 @@
 			name = HeroesDatabase;
 			packageProductDependencies = (
 				D3779A572C8F06B1001A721A /* Reachability */,
+				D38E1D082C9025BE003DE8C1 /* RealmSwift */,
 			);
 			productName = HeroesDatabase;
 			productReference = D3BCBA592C8AED23002A9B1C /* HeroesDatabase.app */;
@@ -428,20 +475,24 @@
 			files = (
 				D3779A5A2C8F0934001A721A /* FavoriteCharactersView.swift in Sources */,
 				D3BCBA942C8AF418002A9B1C /* SearchCharactersResponse.swift in Sources */,
-				D3779A492C8B757B001A721A /* FetchCharactersUseCase.swift in Sources */,
+				D3779A602C8F3699001A721A /* CharacterListItemViewModel.swift in Sources */,
+				D3779A492C8B757B001A721A /* CharactersRepository.swift in Sources */,
 				D3BCBA8C2C8AF2F1002A9B1C /* RequestProtocol.swift in Sources */,
 				D3BCBA902C8AF372002A9B1C /* FetchCharactersResponse.swift in Sources */,
 				D3BCBA982C8AF50C002A9B1C /* APIManager.swift in Sources */,
 				D3779A422C8B39D6001A721A /* CharacterDatabaseViewModel.swift in Sources */,
 				D3779A3E2C8B2788001A721A /* AppSecrets.swift in Sources */,
 				D3BCBA9C2C8AF7E0002A9B1C /* CharactersService.swift in Sources */,
+				D38E1D0E2C90275F003DE8C1 /* CharacterEntity.swift in Sources */,
 				D3779A4D2C8B7886001A721A /* Character.swift in Sources */,
 				D3779A522C8DDA8B001A721A /* CharacterListItemView.swift in Sources */,
 				D3779A442C8B3D3B001A721A /* LoadingView.swift in Sources */,
 				D3779A502C8C4FF5001A721A /* Color.swift in Sources */,
 				D3BCBA5D2C8AED23002A9B1C /* HeroesDatabaseApp.swift in Sources */,
 				D3BCBA8E2C8AF327002A9B1C /* FetchCharactersRequest.swift in Sources */,
+				D38E1D122C90378D003DE8C1 /* HeroesDatabase.swift in Sources */,
 				D3BCBA962C8AF4BA002A9B1C /* ResponseState.swift in Sources */,
+				D3779A5E2C8F2F73001A721A /* FavoriteCharactersViewModel.swift in Sources */,
 				D3779A402C8B399D001A721A /* CharacterDatabaseView.swift in Sources */,
 				D3779A5C2C8F0967001A721A /* CharacterDetailsView.swift in Sources */,
 				D3BCBA922C8AF3F9002A9B1C /* SearchCharactersRequest.swift in Sources */,
@@ -616,7 +667,6 @@
 				INFOPLIST_FILE = HeroesDatabase/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -646,7 +696,6 @@
 				INFOPLIST_FILE = HeroesDatabase/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -811,6 +860,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D3779A542C8F0583001A721A /* XCRemoteSwiftPackageReference "Reachability" */;
 			productName = Reachability;
+		};
+		D38E1D082C9025BE003DE8C1 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D3BCBA862C8AEFC9002A9B1C /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

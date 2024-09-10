@@ -17,33 +17,33 @@ protocol CharacterDatabaseViewModelProtocol: ObservableObject {
     func fetchAllCharacters() async
     func fetchSearchedCharacters(query: String) async
     func fetchNextPage() async
-    func handleFavoriteCharacterButton()
 }
 
 class CharacterDatabaseViewModel: CharacterDatabaseViewModelProtocol {
 
+    private let reachability = try? Reachability()
+    private let charactersRepository: CharactersRepositoryProtocol
+    
+    private var page = 0
+    private var searchTask: Task<Void, Never>? = nil
+    
     @Published var query: String = ""
     @Published var nextPageAvailable: Bool = true
     @Published var state: ResponseState = .idle
     @Published var charactersList: [Character] = []
 
-    private var page = 0
-    private let reachability = try? Reachability()
-    private let fetchCharactersUseCase: FetchCharactersUseCaseProtocol
-    private var searchTask: Task<Void, Never>? = nil
-
-    init(fetchCharactersUseCase: FetchCharactersUseCaseProtocol) {
-        self.fetchCharactersUseCase = fetchCharactersUseCase
+    init(charactersRepository: CharactersRepositoryProtocol = HeroesDatabase.shared.repository) {
+        self.charactersRepository = charactersRepository
     }
 
     @MainActor
     func fetchAllCharacters() async {
         state = .loading
-        
         nextPageAvailable = true
+        page = 0
         
         do {
-            let charactersList = try await fetchCharactersUseCase.getAllCharacters(page: page)
+            let charactersList = try await charactersRepository.fetchAllCharacters(page: page)
             state = charactersList.isEmpty ? .error : .loaded
             self.charactersList = charactersList
         } catch {
@@ -58,9 +58,9 @@ class CharacterDatabaseViewModel: CharacterDatabaseViewModelProtocol {
 
         do {
             if query.isEmpty {
-                nextPageCharactersList = try await fetchCharactersUseCase.getAllCharacters(page: page)
+                nextPageCharactersList = try await charactersRepository.fetchAllCharacters(page: page)
             } else {
-                nextPageCharactersList = try await fetchCharactersUseCase.getSearchedCharacters(query: query.lowercased(), page: page)
+                nextPageCharactersList = try await charactersRepository.fetchSearchedCharacters(query: query.lowercased(), page: page)
             }
             
             if !nextPageCharactersList.isEmpty {
@@ -89,12 +89,10 @@ class CharacterDatabaseViewModel: CharacterDatabaseViewModelProtocol {
 
         state = .loading
         
-        print("QUERY: \(query)")
-
         // Launch a new search task
         searchTask = Task {
             do {
-                let fetchedCharacters = try await fetchCharactersUseCase.getSearchedCharacters(query: query.lowercased(), page: page)
+                let fetchedCharacters = try await charactersRepository.fetchSearchedCharacters(query: query.lowercased(), page: page)
 
                 guard !Task.isCancelled else { return } // Ensure the task wasn't canceled
                 
@@ -114,10 +112,6 @@ class CharacterDatabaseViewModel: CharacterDatabaseViewModelProtocol {
                 
             }
         }
-    }
-    
-    func handleFavoriteCharacterButton() {
-        // TBD
     }
 
     private func checkNetworkState() {

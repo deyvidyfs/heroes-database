@@ -25,7 +25,7 @@ struct CharacterDatabaseView<ViewModel>: View where ViewModel: CharacterDatabase
                     ErrorView(errorMessage: viewModel.state.getErrorMessage(),
                               retryAction: {
                         Task {
-                            viewModel.fetchAllCharacters
+                            await viewModel.fetchAllCharacters()
                         }
                     } )
                 }
@@ -43,27 +43,10 @@ struct CharacterDatabaseView<ViewModel>: View where ViewModel: CharacterDatabase
     @ViewBuilder
     func makeHeaderView() -> some View {
         VStack (alignment: .leading) {
-            HStack {
-                Image(.marvelLogo)
-                    .resizable()
-                    .frame(width: 92, height: 37)
-                    .padding()
-                
-                Spacer()
-                
-                NavigationLink(destination: FavoriteCharactersView()) {
-                    ZStack {
-                        Circle()
-                            .frame(width: 45, height: 45)
-                            .tint(Color.marvelBlue)
-                        Image(systemName: "star.fill")
-                            .resizable()
-                            .frame(width: 25, height: 25)
-                            .tint(.white)
-                    }
-                    .padding(.trailing)
-                }
-            }
+            Image(.marvelLogo)
+                .resizable()
+                .frame(width: 92, height: 37)
+                .padding()
 
             Text("Character Database")
                 .font(.largeTitle)
@@ -94,7 +77,7 @@ struct CharacterDatabaseView<ViewModel>: View where ViewModel: CharacterDatabase
     func makeCharactersList() -> some View {
         List {
             ForEach(viewModel.charactersList) { character in
-                CharacterListItemView(character: character, handleMarkAsFavorite: { })
+                CharacterListItemView(viewModel: CharacterListItemViewModel(character: character))
                     .listRowBackground(Color.marvelGray)
             }
             
@@ -115,8 +98,5 @@ struct CharacterDatabaseView<ViewModel>: View where ViewModel: CharacterDatabase
 }
 
 #Preview {
-    let service = CharactersService()
-    let useCase = FetchCharactersUseCase(charactersService: service)
-    let viewModel = CharacterDatabaseViewModel(fetchCharactersUseCase: useCase)
-    return CharacterDatabaseView(viewModel: viewModel)
+    CharacterDatabaseView(viewModel: CharacterDatabaseViewModel())
 }
