@@ -59,6 +59,7 @@
 		D38E1D712C91A65C003DE8C1 /* LoadingViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38E1D702C91A65C003DE8C1 /* LoadingViewTests.swift */; };
 		D38E1D732C91A69F003DE8C1 /* ErrorViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38E1D722C91A69F003DE8C1 /* ErrorViewTests.swift */; };
 		D38E1D752C91A6D5003DE8C1 /* ImageLoaderViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38E1D742C91A6D5003DE8C1 /* ImageLoaderViewTests.swift */; };
+		D38E1D762C91E368003DE8C1 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = D38E1D492C918B08003DE8C1 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		D3BCBA5D2C8AED23002A9B1C /* HeroesDatabaseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BCBA5C2C8AED23002A9B1C /* HeroesDatabaseApp.swift */; };
 		D3BCBA612C8AED25002A9B1C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3BCBA602C8AED25002A9B1C /* Assets.xcassets */; };
 		D3BCBA642C8AED25002A9B1C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3BCBA632C8AED25002A9B1C /* Preview Assets.xcassets */; };
@@ -99,6 +100,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				D38E1D762C91E368003DE8C1 /* RealmSwift in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
