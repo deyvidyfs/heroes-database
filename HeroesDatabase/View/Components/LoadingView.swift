@@ -28,5 +28,5 @@ struct LoadingView: View {
 }
 
 #Preview {
-    LoadingView(text: "Retrieving database...")
+    LoadingView(text: ScreenText.retrievingDatabase)
 }

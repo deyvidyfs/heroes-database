@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum NetworkError: Error {
+enum NetworkError: Error, Equatable {
     case dataRequestError(String)
     case badURL(String)
     case badNetwork(String)

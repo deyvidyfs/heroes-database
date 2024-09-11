@@ -11,6 +11,7 @@ import SwiftUI
 struct HeroesDatabaseApp: App {
     init() {
         AppSecrets.getKeys()
+        _ = HeroesDatabase()
     }
     
     var body: some Scene {

@@ -12,27 +12,28 @@ struct CharacterDetailsView: View {
     @ObservedObject var viewModel: CharacterDetailsViewModel
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-             makeHeader()
-
-            
-            VStack(spacing: 0) {
-                makeSubHeader()
-            }
-            .background(Color.marvelRed)
-            
-            Text("About")
-                .font(.title3)
-                .bold()
+        ScrollView {
+            VStack(alignment: .leading, spacing: 0) {
+                 makeHeader()
+                
+                VStack(spacing: 0) {
+                    makeSubHeader()
+                }
+                .background(Color.marvelRed)
+                
+                Text(ScreenText.about)
+                    .font(.title3)
+                    .bold()
+                    .foregroundStyle(.white)
+                    .padding()
+                
+                Text(viewModel.characterDescription)
+                .font(.body)
                 .foregroundStyle(.white)
-                .padding()
-            
-            Text(viewModel.characterDescription)
-            .font(.body)
-            .foregroundStyle(.white)
-            .padding(.horizontal)
-            
-            Spacer()
+                .padding(.horizontal)
+                
+                Spacer()
+            }
         }
         .toolbarBackground(Color.marvelRed, for: .navigationBar)
         .toolbarBackground(.visible, for: .navigationBar)

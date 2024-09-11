@@ -21,16 +21,18 @@ protocol CharactersRepositoryProtocol {
 
 class CharactersRepository: CharactersRepositoryProtocol {
     private let charactersService: CharactersServiceProtocol
-
-    init(charactersService: CharactersServiceProtocol) {
+    private let realm: Realm
+    
+    init(charactersService: CharactersServiceProtocol, realm: Realm = try! Realm()) {
         self.charactersService = charactersService
+        self.realm = realm
     }
     
     // MARK: - Remote Data
     
     func fetchAllCharacters(page: Int) async throws -> [Character] {
         let charactersResponse = try await charactersService.fetchAllCharacters(page: page)
-
+        
         return charactersResponse.map {
             Character(id: String($0.id),
                       name: $0.name,
@@ -43,7 +45,7 @@ class CharactersRepository: CharactersRepositoryProtocol {
     
     func fetchSearchedCharacters(query: String, page: Int) async throws -> [Character] {
         let charactersResponse = try await charactersService.fetchSearchedCharacters(query: query, page: page)
-
+        
         return charactersResponse.map {
             Character(id: String($0.id),
                       name: $0.name,
@@ -59,43 +61,32 @@ class CharactersRepository: CharactersRepositoryProtocol {
     func getFavoriteCharacters() async throws -> [Character] {
         return try await withCheckedThrowingContinuation { continuation in
             DispatchQueue.main.async {
-                do {
-                    let realm = try Realm()
-                    let results = realm.objects(CharacterEntity.self)
-                    let characters = results.map { $0.toCharacter() }
-                    continuation.resume(returning: Array(characters))
-                } catch {
-                    continuation.resume(throwing: error)
-                }
+                let results = self.realm.objects(CharacterEntity.self)
+                let characters = results.map { $0.toCharacter() }
+                continuation.resume(returning: Array(characters))
             }
         }
     }
-
+    
     func getFavoriteCharacter(byId id: String) async throws -> Character? {
         return try await withCheckedThrowingContinuation { continuation in
             DispatchQueue.main.async {
-                do {
-                    let realm = try Realm()
-                    if let realmCharacter = realm.object(ofType: CharacterEntity.self, forPrimaryKey: id) {
-                        continuation.resume(returning: realmCharacter.toCharacter())
-                    } else {
-                        continuation.resume(returning: nil)
-                    }
-                } catch {
-                    continuation.resume(throwing: error)
+                if let realmCharacter = self.realm.object(ofType: CharacterEntity.self, forPrimaryKey: id) {
+                    continuation.resume(returning: realmCharacter.toCharacter())
+                } else {
+                    continuation.resume(returning: nil)
                 }
             }
         }
     }
-
+    
     func saveFavoriteCharacter(_ character: Character) async throws {
         let realmCharacter = CharacterEntity(from: character)
         try await withCheckedThrowingContinuation { continuation in
             DispatchQueue.main.async {
                 do {
-                    let realm = try Realm()
-                    try realm.write {
-                        realm.add(realmCharacter, update: .modified)
+                    try self.realm.write {
+                        self.realm.add(realmCharacter, update: .modified)
                     }
                     continuation.resume()
                 } catch {
@@ -104,15 +95,14 @@ class CharactersRepository: CharactersRepositoryProtocol {
             }
         }
     }
-
+    
     func deleteFavoriteCharacter(byId id: String) async throws {
         try await withCheckedThrowingContinuation { continuation in
             DispatchQueue.main.async {
                 do {
-                    let realm = try Realm()
-                    if let characterToDelete = realm.object(ofType: CharacterEntity.self, forPrimaryKey: id) {
-                        try realm.write {
-                            realm.delete(characterToDelete)
+                    if let characterToDelete = self.realm.object(ofType: CharacterEntity.self, forPrimaryKey: id) {
+                        try self.realm.write {
+                            self.realm.delete(characterToDelete)
                         }
                     }
                     continuation.resume()

@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct SearchCharactersResponse: Decodable {
+struct SearchCharactersResponse: Codable {
     var data: FetchCharactersDataResponse
 }

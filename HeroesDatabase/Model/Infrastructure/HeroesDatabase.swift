@@ -9,13 +9,16 @@ import Foundation
 
 final class HeroesDatabase {
     
-    static let shared = HeroesDatabase()
+    static var shared: HeroesDatabase!
     
     let service: CharactersServiceProtocol
     let repository: CharactersRepositoryProtocol
     
-    private init() {
-        self.service = CharactersService()
-        self.repository = CharactersRepository(charactersService: self.service)
+    init(service: CharactersServiceProtocol? = nil,
+         repository: CharactersRepositoryProtocol? = nil) {
+        self.service = service ?? CharactersService()
+        self.repository = repository ?? CharactersRepository(charactersService: self.service)
+        
+        HeroesDatabase.shared = self
     }
 }

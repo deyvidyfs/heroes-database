@@ -7,22 +7,22 @@
 
 import Foundation
 
-struct FetchCharactersResponse: Decodable {
+struct FetchCharactersResponse: Codable {
     var data: FetchCharactersDataResponse
 }
 
-struct FetchCharactersDataResponse: Decodable {
+struct FetchCharactersDataResponse: Codable {
     var results: [CharacterResponse]
 }
 
-struct CharacterResponse: Decodable {
+struct CharacterResponse: Codable {
     var id: Int
     var name: String
     var description: String
     var thumbnail: CharacterThumbnailResponse
 }
 
-struct CharacterThumbnailResponse: Decodable {
+struct CharacterThumbnailResponse: Codable {
     var path: String
     var `extension`: String
 }

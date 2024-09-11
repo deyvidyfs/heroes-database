@@ -18,7 +18,7 @@ struct FavoriteCharactersView<ViewModel>: View where ViewModel: FavoriteCharacte
                 
                 switch viewModel.state {
                 case .loading:
-                    LoadingView(text: "Retrieving database...")
+                    LoadingView(text: ScreenText.retrievingDatabase)
                 case .loaded, .idle:
                     makeCharactersList()
                 case .error, .errorNoNetwork, .errorNoResults:
@@ -48,7 +48,7 @@ struct FavoriteCharactersView<ViewModel>: View where ViewModel: FavoriteCharacte
                 Spacer()
             }
 
-            Text("Favorites")
+            Text(ScreenText.favorites)
                 .font(.largeTitle)
                 .bold()
                 .foregroundStyle(.white)

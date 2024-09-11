@@ -18,7 +18,7 @@ struct CharacterDatabaseView<ViewModel>: View where ViewModel: CharacterDatabase
                 
                 switch viewModel.state {
                 case .loading:
-                    LoadingView(text: "Retrieving database...")
+                    LoadingView(text: ScreenText.retrievingDatabase)
                 case .loaded, .idle:
                     makeCharactersList()
                 case .error, .errorNoNetwork, .errorNoResults:
@@ -48,7 +48,7 @@ struct CharacterDatabaseView<ViewModel>: View where ViewModel: CharacterDatabase
                 .frame(width: 92, height: 37)
                 .padding()
 
-            Text("Character Database")
+            Text(ScreenText.characterDatabase)
                 .font(.largeTitle)
                 .bold()
                 .foregroundStyle(.white)
@@ -56,7 +56,7 @@ struct CharacterDatabaseView<ViewModel>: View where ViewModel: CharacterDatabase
             
             HStack {
                 Image(systemName: "magnifyingglass").foregroundColor(.gray)
-                TextField("Search", text: $viewModel.query)
+                TextField(ScreenText.search, text: $viewModel.query)
                     .onChange(of: viewModel.query, perform: { _ in
                         Task {
                             await viewModel.fetchSearchedCharacters(query: viewModel.query)
@@ -82,7 +82,7 @@ struct CharacterDatabaseView<ViewModel>: View where ViewModel: CharacterDatabase
             }
             
             if viewModel.nextPageAvailable {
-                LoadingView(text: "Retrieving database....")
+                LoadingView(text: ScreenText.retrievingDatabase)
                     .frame(maxWidth: .infinity, maxHeight: 75)
                     .listRowBackground(Color.marvelGray)
                     .onAppear {
